@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>my queen</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: radial-gradient(circle, #1b0030, #000000);
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        /* Starry Background */
+        .stars {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background: transparent;
+        }
+
+        .stars div {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 1s infinite alternate ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        /* Moon */
+        .moon {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, #ffffff 60%, #cccccc 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 30px #ffffff88;
+        }
+
+        /* Message Box */
+        .message-box {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            padding: 20px;
+            border: 2px solid #ff006e;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            color: #ff99cc;
+            animation: glow 3s infinite alternate;
+            font-size: 1.5rem;
+        }
+
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 10px #ff006e, 0 0 20px #ff3c96;
+            }
+            100% {
+                box-shadow: 0 0 30px #ff006e, 0 0 50px #ff3c96;
+            }
+        }
+
+        /* Bats */
+        .bat {
+            position: absolute;
+            width: 50px;
+            height: 30px;
+            background: black;
+            clip-path: polygon(50% 0, 100% 50%, 80% 100%, 60% 60%, 40% 60%, 20% 100%, 0 50%);
+            animation: fly linear infinite;
+        }
+
+        .bat::before {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: black;
+            border-radius: 50%;
+            top: -5px;
+            left: 18px;
+        }
+
+        @keyframes fly {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: translate(50vw, -10vh) scale(1.2);
+            }
+            100% {
+                transform: translate(100vw, 0) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* Cat */
+        .cat {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 80px;
+            background: black;
+            border-radius: 50%;
+            animation: bounce 2s infinite;
+        }
+
+        .cat:before, .cat:after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 40px;
+            background: black;
+            border-radius: 50%;
+        }
+
+        .cat:before {
+            top: -30px;
+            left: 5px;
+            transform: rotate(-15deg);
+        }
+
+        .cat:after {
+            top: -30px;
+            right: 5px;
+            transform: rotate(15deg);
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .moon {
+                top: 5%;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 100px;
+                height: 100px;
+            }
+
+            .message-box {
+                bottom: 5%;
+                font-size: 1rem;
+                padding: 15px;
+            }
+
+            .bat {
+                width: 40px;
+                height: 25px;
+            }
+
+            .cat {
+                width: 60px;
+                height: 60px;
+            }
+
+            .cat:before, .cat:after {
+                width: 25px;
+                height: 35px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .moon {
+                top: 3%;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 80px;
+                height: 80px;
+            }
+
+            .message-box {
+                bottom: 3%;
+                font-size: 0.9rem;
+                padding: 10px;
+            }
+
+            .bat {
+                width: 35px;
+                height: 20px;
+            }
+
+            .cat {
+                width: 50px;
+                height: 50px;
+            }
+
+            .cat:before, .cat:after {
+                width: 20px;
+                height: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars">
+        <!-- Create stars -->
+        <script>
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.style.top = Math.random() * 100 + 'vh';
+                star.style.left = Math.random() * 100 + 'vw';
+                star.style.animationDelay = Math.random() * 2 + 's';
+                document.querySelector('.stars').appendChild(star);
+            }
+        </script>
+    </div>
+
+    <div class="moon"></div>
+
+    <div class="bat" style="top: 10%; animation-duration: 6s;"></div>
+    <div class="bat" style="top: 30%; animation-duration: 7s; animation-delay: 1s;"></div>
+    <div class="bat" style="top: 50%; animation-duration: 5s; animation-delay: 2s;"></div>
+
+    <div class="message-box">
+        my love,  
+        under this moonlit sky 🌑, our souls are bound like eternal flames,  
+        you’re my forever vampire 🦇, my queen of the night 🖤,  
+        there’s no one else i’d roam these shadowed paths with but you.  
+        your beauty, your essence, your everything… it’s enough for me, always 🥹,  
+        let’s rule this gothic kingdom together, forever and always 🫂💜.  
+    </div>
+
+    <div class="cat"></div>
+</body>
+</html>
